@@ -1,0 +1,21 @@
+/* Reset CSS untuk memastikan konsistensi di semua HP */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; 
+}
+
+body {
+    font-family: sans-serif; 
+    background-color: #000; 
+    color: #fff;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Dikunci sepenuhnya agar tidak bisa di-scroll secara paksa */
+}
+
+/* --- TAMBAHAN TAHAP 2: Utility Class --- */
+.hidden {
+    display: none !important;
+}

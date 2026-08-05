@@ -1,0 +1,200 @@
+/* ==========================================================================
+   TAHAP 12.10: LAYOUT ADJUSTMENT & BOTTOM SIGNATURE FIX
+   ========================================================================== */
+
+/* --- 1. Ambient & Background Effects --- */
+#bg-video-container {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; overflow: hidden;
+}
+#bg-video-container video {
+    width: 100%; height: 100%; object-fit: cover; filter: blur(8px) brightness(0.35);
+}
+
+.ambient-warm-glow {
+    position: fixed; top: -20vh; right: -20vw; width: 150vw; height: 150vh;
+    background: radial-gradient(circle, rgba(255,160,80,0.15) 0%, rgba(0,0,0,0) 70%);
+    mix-blend-mode: overlay; pointer-events: none; z-index: 2;
+}
+
+.ambient-leaf-shadows {
+    position: fixed; top: -10%; left: -10%; width: 120%; height: 120%;
+    background-image: radial-gradient(circle at 30% 40%, rgba(0,0,0,0.2) 0%, transparent 15%), 
+                      radial-gradient(circle at 70% 60%, rgba(0,0,0,0.15) 0%, transparent 20%);
+    filter: blur(15px); pointer-events: none; z-index: 10; mix-blend-mode: multiply;
+    animation: leafSway 15s infinite alternate ease-in-out;
+}
+@keyframes leafSway { 0% { transform: translate(0,0) rotate(0deg); } 100% { transform: translate(30px, 20px) rotate(2deg); } }
+
+/* --- 2. Kertas Surat Utama (DIPERBAIKI: Padding bawah ditambah agar tanda tangan tidak keluar) --- */
+.letter-container {
+    position: relative; 
+    z-index: 5; 
+    width: 92%; 
+    max-width: 500px; 
+    margin: 40px auto 140px auto; /* Margin bawah dibikin jauh lebih panjang biar mentok bawah layar ada jarak */
+    background: #fcfaf5 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    border-radius: 2px 8px 3px 10px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 0 40px rgba(139, 69, 19, 0.05);
+    padding: 60px 25px 140px 25px; /* PADDING BAWAH DIPERBESAR JADI 140px supaya kertas otomatis memanjang ke bawah */
+    overflow: visible;
+    height: auto !important; 
+    min-height: 100vh; /* Memastikan kertas minimal sepanjang layar */
+}
+
+
+/* Amplop Bekas (Ujung Atas) */
+.envelope-remnant {
+    position: absolute; top: -15px; left: 10%; width: 80%; height: 30px;
+    background: #f0eadd; border-bottom: 1px dashed rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); transform: rotate(-1deg); border-radius: 0 0 20px 20px; z-index: -1;
+}
+
+/* Sudut Kertas Terlipat */
+.folded-corner {
+    position: absolute; top: 0; right: 0; width: 45px; height: 45px;
+    background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.06) 50%, #eee8d5 100%);
+    border-bottom-left-radius: 6px; box-shadow: -3px 3px 6px rgba(0,0,0,0.05);
+}
+
+/* Transisi Sobekan Kertas */
+.torn-paper-divider {
+    height: 15px; margin: 50px -25px;
+    background-image: radial-gradient(circle at 10px 0, transparent 10px, rgba(0,0,0,0.03) 11px);
+    background-size: 20px 15px; background-repeat: repeat-x; opacity: 0.7;
+}
+
+/* --- 3. Tipografi & Spacing Bernapas (DIPERBAIKI: Spacing antar section lebih proporsional) --- */
+.story-section { 
+    margin-bottom: 70px !important; 
+    position: relative; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; /* Jarak antar elemen di dalam section */
+}
+
+.media-container { 
+    position: relative; 
+    margin: 35px 0 !important; /* Memberikan ruang napas atas dan bawah foto */
+    z-index: 6; 
+    display: flex; 
+    justify-content: center; 
+    width: 100%; 
+}
+
+.handwriting-title { font-family: 'Shadows Into Light', cursive; font-size: 32px; color: #1c1917; margin-bottom: 18px; transform: rotate(-2deg); }
+.handwriting-text { font-family: 'Caveat', cursive; font-size: 22px; line-height: 1.75; color: #3f3f46; letter-spacing: 0.5px; margin-bottom: 20px; }
+
+/* Coretan, Tanggal & Stempel */
+.doodle-date { position: relative; top: -30px; right: 10px; font-family: 'Special Elite', monospace; font-size: 14px; color: #78716c; transform: rotate(4deg); border: 1px solid #78716c; padding: 2px 6px; border-radius: 3px; opacity: 0.7; }
+.vintage-seal { position: relative; bottom: 15px; right: 15px; width: 55px; height: 55px; border: 2px solid #991b1b; border-radius: 50%; color: #991b1b; font-family: 'Georgia', serif; font-size: 9px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; transform: rotate(-15deg); opacity: 0.6; box-shadow: inset 0 0 5px rgba(153, 27, 27, 0.2); z-index: 4; }
+.sticker-heart { font-size: 20px; position: absolute; top: -10px; opacity: 0.8; }
+.deco-ticket { font-family: 'Special Elite', monospace; background: #fee2e2; padding: 5px 10px; font-size: 12px; transform: rotate(-12deg); box-shadow: 2px 2px 5px rgba(0,0,0,0.1); display: inline-block; }
+.deco-map { font-family: 'Caveat', cursive; background: #e0e7ff; padding: 5px 10px; font-size: 14px; transform: rotate(8deg); box-shadow: 2px 2px 5px rgba(0,0,0,0.1); display: inline-block; margin-top: 15px; }
+
+/* Posisi Organik */
+.pos-left { margin-left: -20px; float: left; margin-right: 15px; }
+.pos-right { margin-right: -20px; float: right; margin-left: 15px; }
+
+/* --- 4. Polaroid Frames & 3D Protrusion --- */
+.media-container { position: relative; margin: 25px 0; z-index: 6; }
+.protrude-right { margin-right: -30px !important; margin-left: 10px !important; }
+.protrude-left { margin-left: -30px !important; margin-right: 10px !important; }
+
+.polaroid-frame { background: #fff; padding: 12px 12px 45px 12px; border-radius: 2px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+.frame-classic { box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.frame-vintage { background: #fdfbf7; box-shadow: 0 15px 35px rgba(0,0,0,0.25); filter: sepia(0.2); }
+.frame-cream { background: #f5f0e6; box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+
+.tape-masking::before { content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-3deg); width: 80px; height: 24px; background: rgba(240, 230, 210, 0.8); border: 1px dashed rgba(160, 130, 100, 0.4); z-index: 2; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.tape-washi::before { content: ''; position: absolute; top: -10px; right: -10px; transform: rotate(45deg); width: 60px; height: 20px; background: rgba(255, 180, 180, 0.6); z-index: 2; }
+
+.stacked-photos-wrapper { position: relative; height: 320px; margin: 35px 0; }
+.stacked-bottom { position: absolute; top: 0; left: 0; transform: rotate(-5deg); z-index: 1; opacity: 0.9; }
+.stacked-bottom .frame-classic { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.stacked-top { position: absolute; top: 30px; left: 15px; transform: rotate(4deg); z-index: 2; }
+.stacked-top .frame-classic { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+
+.paperclip-metal {
+    position: absolute; top: 15px; left: 45%; width: 15px; height: 50px;
+    border: 3px solid #94a3b8; border-radius: 10px; z-index: 10; transform: rotate(12deg);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%); 
+}
+
+.media-item { width: 100%; height: 200px; object-fit: cover; border-radius: 1px; border: 1px solid rgba(0,0,0,0.05); }
+.polaroid-caption { position: absolute; bottom: 12px; left: 0; width: 100%; text-align: center; font-family: 'Caveat', cursive; font-size: 18px; color: #334155; }
+
+/* --- 5. Tanda Tangan (DIPERBAIKI: Dipastikan aman di dalam area kertas tanpa overflow) --- */
+.signature-area { 
+    margin-top: 100px !important; /* Mendorong tanda tangan jauh ke bawah foto */
+    margin-bottom: 40px !important; 
+    text-align: right; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; 
+    padding-right: 15px; 
+    position: relative !important;
+    z-index: 10; /* Diposisikan di atas elemen lain agar tidak tertutup */
+}
+
+.sign-closing { font-family: 'Caveat', cursive; font-size: 22px; color: #52525b; margin-bottom: 8px; }
+.sign-name { font-family: 'Shadows Into Light', cursive; font-size: 34px; color: #000; font-weight: bold; transform: rotate(-4deg); }
+.sign-date { font-family: 'Special Elite', monospace; font-size: 11px; color: #a1a1aa; letter-spacing: 1px; margin-top: 8px; }
+
+/* --- 6. Kelopak Bunga (Petals) --- */
+#petals-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 3; pointer-events: none; overflow: hidden; }
+.petal { position: absolute; background: rgba(255, 190, 200, 0.7); border-radius: 150% 0 150% 0; animation: drift linear infinite; box-shadow: inset 0 0 4px rgba(255,255,255,0.5); }
+@keyframes drift {
+    0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(110vh) translateX(80px) rotate(360deg); opacity: 0; }
+}
+
+/* Lightbox */
+#lightbox-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.95); z-index: 100000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+#lightbox-overlay.active { opacity: 1; pointer-events: all; }
+#lightbox-img { max-width: 90%; max-height: 85%; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: scale(0.8); transition: transform 0.4s; }
+#lightbox-overlay.active #lightbox-img { transform: scale(1); }
+#lightbox-close { position: absolute; top: 25px; right: 25px; color: #fff; font-size: 35px; font-weight: 300; cursor: pointer; }
+
+/* Hiasan Tambahan */
+.coffee-stain {
+    position: absolute; width: 120px; height: 120px; border-radius: 50%;
+    border: 3px solid rgba(139, 69, 19, 0.08); box-shadow: inset 0 0 10px rgba(139, 69, 19, 0.04);
+    transform: rotate(20deg); z-index: 1; pointer-events: none;
+}
+.coffee-stain::after {
+    content: ''; position: absolute; top: -5px; left: -5px; width: 100%; height: 100%;
+    border-radius: 50%; border: 2px solid rgba(139, 69, 19, 0.05);
+}
+
+.deco-dried-flower { position: absolute; font-size: 28px; filter: sepia(0.6) opacity(0.85); transform: rotate(-15deg); z-index: 7; text-shadow: 2px 2px 4px rgba(0,0,0,0.15); }
+.thumbtack {
+    position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px;
+    background: radial-gradient(circle, #e2e8f0 0%, #94a3b8 100%); border-radius: 50%;
+    box-shadow: 2px 5px 5px rgba(0,0,0,0.3); z-index: 10;
+}
+
+.vine-long {
+    position: absolute; background-size: contain; background-repeat: no-repeat; pointer-events: none; opacity: 0.85; z-index: 15;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 400'%3E%3Cpath d='M50 0 Q30 50 50 100 T50 200 T50 300 T50 400' stroke='%232f5233' stroke-width='2' fill='none'/%3E%3Cpath d='M50 50 Q70 40 70 60 Q50 70 50 50 M50 150 Q30 140 30 160 Q50 170 50 150 M50 250 Q70 240 70 260 Q50 270 50 250 M50 350 Q30 340 30 360 Q50 370 50 350' fill='%232f5233' opacity='0.9'/%3E%3C/svg%3E");
+}
+.vine-1 { top: -40px; left: -30px; width: 60px; height: 350px; transform: rotate(-5deg); }
+.vine-2 { top: 25%; right: -25px; width: 50px; height: 400px; transform: scaleX(-1) rotate(5deg); }
+.vine-3 { bottom: 15%; left: -20px; width: 70px; height: 300px; transform: rotate(10deg); }
+.vine-4 { bottom: -30px; right: 10%; width: 50px; height: 250px; transform: rotate(170deg); }
+
+.doodle-paint {
+    position: absolute; width: 45px; height: 45px; background-size: contain; background-repeat: no-repeat;
+    pointer-events: none; opacity: 0.65; mix-blend-mode: multiply; z-index: 4;
+}
+.d-sun { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cpath d='M25 15 A10 10 0 1 1 24.9 15 M25 2 v8 M25 40 v8 M5 25 h8 M37 25 h8 M10 10 l5 5 M35 35 l5 5 M10 40 l5 -5 M35 10 l5 5' stroke='%23d97706' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.d-cloud { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 30'%3E%3Cpath d='M15 25 Q10 25 10 20 Q10 15 15 15 Q18 5 25 5 Q32 5 35 15 Q40 15 40 20 Q40 25 35 25 Z' stroke='%233b82f6' stroke-width='2' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E"); width: 60px; height: 35px; }
+.d-flower { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cpath d='M25 25 m-5 -10 a5 5 0 1 1 10 0 a5 5 0 1 1 10 10 a5 5 0 1 1 -10 10 a5 5 0 1 1 -10 -10 a5 5 0 1 1 -10 -10 a5 5 0 1 1 10 -10' stroke='%23be123c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); }
+.d-leaf { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cpath d='M10 40 Q10 10 40 10 Q40 40 10 40 M10 40 L40 10' stroke='%2315803d' stroke-width='2' fill='none'/%3E%3C/svg%3E"); }
+
+.quote-block {
+    font-family: 'Georgia', serif; font-style: italic; font-size: 20px; color: #57534e;
+    border-left: 3px solid #d6d3d1; padding-left: 18px; margin: 25px 0; line-height: 1.6; opacity: 0.9;
+}

@@ -1,0 +1,135 @@
+/* TAHAP 4: LAYOUT SURAT UTAMA */
+
+/* Background Fixed */
+.letter-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    /* Ganti bg-letter.jpg dengan file kamu nanti di assets/background/ */
+    background-image: url('../assets/background/bg-letter.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    z-index: 1;
+}
+
+/* Overlay Gelap/Hangat di atas Background */
+.letter-bg-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(15, 15, 15, 0.65); /* Opacity disesuaikan agar elegan */
+    z-index: 2;
+}
+
+/* Kontainer Kertas Surat (Elegan & Membulat) */
+.letter-container {
+    position: relative;
+    z-index: 3;
+    width: 90%;
+    max-width: 500px;
+    margin: 60px auto; /* Memberi jarak aman dari atas dan bawah layar */
+    background: rgba(253, 251, 247, 0.95); /* Warna cream/gading premium */
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    padding: 60px 25px;
+    overflow: hidden; /* Menjaga dekorasi tetap di dalam kertas */
+}
+
+/* --- KOMPONEN SECTION (Independen) --- */
+.story-section {
+    margin-bottom: 70px; /* Jarak luas antar section agar nyaman dibaca */
+    text-align: center;
+    position: relative;
+}
+
+.story-section:last-child {
+    margin-bottom: 20px;
+}
+
+/* --- TIPOGRAFI --- */
+.serif-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 22px;
+    color: #3f3f46;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.handwriting-text {
+    /* Font standar sementara, akan diganti custom font tahap berikutnya */
+    font-family: 'Comic Sans MS', 'Caveat', cursive, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #52525b;
+}
+
+.placeholder-text {
+    font-style: italic;
+    color: #9ca3af;
+}
+
+/* --- PLACEHOLDER MEDIA (Foto/Video) --- */
+.media-placeholder {
+    width: 100%;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 14px;
+}
+.video-box { height: 250px; }
+
+/* --- DEKORASI (Scrapbook Vibe) --- */
+/* Disiapkan untuk gambar dari assets/stickers/ */
+.deco-tape {
+    position: absolute; width: 60px; height: 25px;
+    background: rgba(200, 200, 200, 0.5); /* Placeholder isolasi */
+    transform: rotate(-5deg);
+}
+.deco-flower {
+    position: absolute; width: 50px; height: 50px;
+    background: rgba(255, 180, 180, 0.3); border-radius: 50%; /* Placeholder bunga */
+}
+.deco-stamp {
+    width: 60px; height: 60px; margin: 30px auto 0;
+    border: 2px solid #ef4444; border-radius: 50%; opacity: 0.6; /* Placeholder cap pos */
+}
+
+/* Posisi Dekorasi */
+.top-left { top: -5px; left: -10px; }
+.top-right { top: -10px; right: 10px; }
+.center { margin: 20px auto; }
+
+/* --- TAMBAHAN TAHAP 5: UX MEMBACA & PROGRESS BAR --- */
+
+/* Indikator Progres Membaca (Tipis, Elegan, Fixed di atas) */
+#progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 3px;
+    background: transparent;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    border-radius: 0 2px 2px 0;
+    will-change: width; /* Optimasi performa render Android */
+}
+
+/* Optimasi Kenyamanan Membaca (Story Engine) */
+.handwriting-text {
+    max-width: 90%;
+    margin: 0 auto; /* Memastikan teks tetap di tengah dan tidak terlalu melebar */
+    margin-bottom: 15px; /* Jarak antar paragraf jika nanti ada lebih dari 1 */
+    letter-spacing: 0.3px;
+}

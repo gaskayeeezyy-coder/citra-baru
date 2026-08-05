@@ -1,0 +1,175 @@
+/* Layout Kontainer Utama */
+.opening-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #121212; /* Warna dasar redup */
+}
+
+/* Background setup (Akan menarik gambar dari folder asset jika diisi) */
+.bg-image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Ganti bg-opening.jpg dengan file kamu nanti di dalam assets/background/ */
+    background-image: url('../assets/background/bg-opening.jpg'); 
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+/* Overlay gelap agar teks terbaca jelas (Vibe Hangat & Elegan) */
+.bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(15, 15, 15, 0.75), rgba(0, 0, 0, 0.95));
+    z-index: 2;
+}
+
+/* Wrapper Konten Utama */
+.opening-content {
+    position: relative;
+    z-index: 3;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Tipografi & Warna */
+.small-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #cbd5e1;
+    font-weight: 300;
+}
+
+.main-title {
+    font-family: "Georgia", "Times New Roman", serif; /* Vibe elegan premium */
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 1.4;
+    color: #f8fafc;
+}
+
+.description {
+    font-size: 13px;
+    font-weight: 300;
+    color: #94a3b8;
+    margin-top: 15px;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+
+/* Spacer Modular */
+.spacer-small { height: 25px; }
+.spacer-medium { height: 35px; }
+.spacer-large { height: 45px; }
+
+/* Amplop Elegan */
+.envelope-icon {
+    width: 60px;
+    height: 60px;
+    color: #e2e8f0; 
+}
+
+.envelope-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+}
+
+/* Tombol Premium */
+.btn-primary {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 14px 36px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 40px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efek sentuhan pada HP (Touch) */
+.btn-primary:active {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(0.95);
+}
+/* ... (Pertahankan seluruh kode css/opening.css dari Tahap 2 di bagian atas) ... */
+
+/* --- TAMBAHAN TAHAP 3: CSS ENVELOPE REALISTIS --- */
+.envelope-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+.css-envelope {
+    position: relative;
+    width: 100px;
+    height: 70px;
+    margin: 0 auto;
+    perspective: 1200px; /* Untuk efek 3D saat flap terbuka */
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.env-back {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #94a3b8;
+    border-radius: 4px;
+}
+
+.env-paper {
+    position: absolute;
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    background: #fdfbf7;
+    border-radius: 3px;
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+}
+
+/* Detail kecil isi surat agar tidak polos */
+.env-paper-line {
+    width: 100%; height: 3px; background: #e2e8f0; border-radius: 2px;
+}
+.env-paper-line.short { width: 60%; }
+
+.env-front {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: transparent;
+    border-left: 50px solid #e2e8f0;
+    border-right: 50px solid #e2e8f0;
+    border-bottom: 35px solid #f1f5f9;
+    border-top: 35px solid transparent;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.env-flap {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: transparent;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 40px solid #f8fafc;
+    border-bottom: 30px solid transparent;
+    transform-origin: top;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.3s;
+    z-index: 3;
+}

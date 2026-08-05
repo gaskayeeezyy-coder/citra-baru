@@ -1,4 +1,4 @@
-package com.citra.gaska;
+package Com.gaska.citta;
 
 import com.getcapacitor.BridgeActivity;
 

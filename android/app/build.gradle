@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "com.citra.gaska"
+    namespace = "Com.gaska.citta"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.citra.gaska"
+        applicationId "Com.gaska.citta"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

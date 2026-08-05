@@ -1,10 +1,10 @@
 // js/capsule-config.js - Pusat Konfigurasi Memory Capsule (Tahap 10)
 const CAPSULE_CONFIG = {
     enabled: true,
-    // Jalur file placeholder untuk Memory Capsule
-    videoSrc: 'assets/videos/7.mov',
-    voiceNoteSrc: 'assets/music/PTT-20260805-WA0010.mp3',
-    photoSrc: 'assets/images/8.png',
+    // PERBAIKAN: Jalur file ditambah titik (./) agar terbaca oleh Capacitor
+    videoSrc: './assets/videos/7.mov',
+    voiceNoteSrc: './assets/music/PTT-20260805-WA0010.mp3',
+    photoSrc: './assets/images/8.png',
     
     // Teks placeholder surat dan pesan terakhir
     finalLetterTitle: "Catatan Terakhir",

@@ -13,7 +13,7 @@ const APP_CONFIG = {
         { targetId: 'media-foto-4', src: './assets/images/c.jpg', caption: 'Hari yang cerah.', frame: 'frame-classic', tape: 'tape-masking', rotation: '5deg' },
         { targetId: 'media-foto-5', src: './assets/images/d.jpg', caption: 'Langkah kecil.', frame: 'frame-vintage', tape: 'none', rotation: '-2deg' },
         { targetId: 'media-foto-6', src: './assets/images/e.jpg', caption: 'Waktu berhenti.', frame: 'frame-cream', tape: 'tape-washi', rotation: '4deg' },
-        { targetId: 'media-foto-7', src: './assets/images/x.jpg', caption: 'Momen berharga.', frame: 'frame-classic', tape: 'tape-masking', rotation: '-5deg' },
+        { targetId: 'media-foto-7', src: './assets/images/b.jpg', caption: 'Momen berharga.', frame: 'frame-classic', tape: 'tape-masking', rotation: '-5deg' },
         { targetId: 'media-foto-8', src: './assets/images/8.png', caption: 'Tanpa rencana.', frame: 'frame-vintage', tape: 'none', rotation: '2deg' },
         { targetId: 'media-foto-9', src: './assets/images/9.png', caption: 'Selalu ingat.', frame: 'frame-classic', tape: 'tape-masking', rotation: '-3deg' },
         { targetId: 'media-foto-10', src: './assets/images/10.jpeg', caption: 'Hingga nanti.', frame: 'frame-cream', tape: 'tape-washi', rotation: '5deg' }

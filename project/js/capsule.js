@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Buat dan Sisipkan Elemen Pemicu (Trigger) di Ujung Halaman Surat
     const triggerWrapper = document.createElement('div');
     triggerWrapper.id = 'capsule-trigger-container';
+    // PERBAIKAN: Tambah z-index agar tombol tidak terhalang elemen transparan (daun/bunga)
+    triggerWrapper.style.position = 'relative';
+    triggerWrapper.style.zIndex = '9999';
     triggerWrapper.innerHTML = `
         <p class="capsule-hint-text">...masih ada satu hadiah terakhir untukmu.</p>
         <button id="btn-open-capsule" class="btn-capsule">Buka Hadiah Terakhir</button>
@@ -17,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Buat Elemen Overlay Memory Capsule secara Dinamis
     const capsuleOverlay = document.createElement('div');
     capsuleOverlay.id = 'memory-capsule-overlay';
+    // PERBAIKAN: Pastikan popup terbuka di lapisan paling depan menutupi segalanya
+    capsuleOverlay.style.zIndex = '99999';
     capsuleOverlay.innerHTML = `
         <div class="capsule-box">
             <h3 class="capsule-title">Memory Capsule</h3>
@@ -69,17 +74,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 4. Interaksi Buka / Tutup Capsule
-    const btnOpen = document.getElementById('btn-open-capsule');
-    const btnClose = document.getElementById('btn-close-capsule');
+    // PERBAIKAN: Cari tombol secara presisi di dalam wrapper yang baru dibuat
+    const btnOpen = triggerWrapper.querySelector('#btn-open-capsule');
+    const btnClose = capsuleOverlay.querySelector('#btn-close-capsule');
 
     if (btnOpen) {
-        btnOpen.addEventListener('click', () => {
+        btnOpen.addEventListener('click', (e) => {
+            e.preventDefault(); // Mencegah bentrok dengan scroll Android
             capsuleOverlay.classList.add('active');
         });
     }
 
     if (btnClose) {
-        btnClose.addEventListener('click', () => {
+        btnClose.addEventListener('click', (e) => {
+            e.preventDefault();
             capsuleOverlay.classList.remove('active');
             // Pause video/audio di dalam capsule saat ditutup
             const mediaElements = capsuleOverlay.querySelectorAll('video, audio');

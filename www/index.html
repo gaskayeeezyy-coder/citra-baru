@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PWA Project</title>
+  
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/opening.css">
+    <link rel="stylesheet" href="css/letter.css">
+    <link rel="stylesheet" href="css/scrapbook.css">
+    <link rel="stylesheet" href="css/capsule.css">
+    <link rel="stylesheet" href="css/cinematic.css">
+</head>
+<body>
+    
+    <audio id="bg-music" loop preload="auto"></audio>
+    <div id="transition-overlay" class="hidden"></div>
+
+    <!-- LAYER CINEMATIC OVERLAY & VIDEO BACKGROUND -->
+    <div id="cinematic-layer">
+        <div id="cinematic-video-container">
+            <video id="cinematic-video" autoplay muted loop playsinline src="assets/videos/background.MOV"></video>
+            <div class="cinematic-video-dimmer"></div>
+        </div>
+        <div id="cinematic-text"></div>
+    </div>
+
+    <!-- Halaman Pembuka -->
+    <section id="opening-page" class="opening-container">
+        <div id="dynamic-bg-opening" class="bg-image bg-zoom"></div>
+        <div class="bg-overlay"></div>
+        
+        <div class="opening-content">
+            <p class="small-title fade-in-up transition-target" style="--delay: 0.3s">Untuk seseorang yang sangat berarti.</p>
+            <div class="spacer-small"></div>
+            
+            <div class="envelope-wrapper fade-in-up" style="--delay: 0.8s">
+                <div class="float-anim" id="animatable-envelope">
+                    <div class="css-envelope">
+                        <div class="env-back"></div>
+                        <div class="env-paper">
+                            <div class="env-paper-line"></div>
+                            <div class="env-paper-line short"></div>
+                        </div>
+                        <div class="env-front"></div>
+                        <div class="env-flap"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacer-medium"></div>
+            <h1 class="main-title fade-in-up transition-target" style="--delay: 1.3s">Selamat Ulang Tahun<br>Citra Dwi Lestari.</h1>
+            <p class="description fade-in-up transition-target" style="--delay: 1.8s">Aku membuat sesuatu yang ingin kamu lihat sampai akhir.</p>
+            <div class="spacer-large"></div>
+            <button id="btn-open-letter" class="btn-primary fade-in-up transition-target" style="--delay: 2.3s">Buka Surat</button>
+        </div>
+    </section>
+
+    <!-- Halaman Surat Utama (Scrapbook) -->
+    <section id="letter-page" class="hidden">
+        
+        <div id="progress-container"><div id="progress-bar"></div></div>
+
+        <!-- Ambient & Background Video Scrapbook -->
+        <div id="bg-video-container">
+            <video id="dynamic-bg-video" autoplay muted loop playsinline src="assets/videos/background.MOV"></video>
+            <div class="cinematic-video-dimmer"></div>
+        </div>
+        <div class="ambient-warm-glow"></div>
+        <div class="ambient-leaf-shadows"></div>
+        <div id="petals-overlay"></div>
+
+        <div class="letter-container">
+            <!-- Hiasan: Daun Menjalar Luar -->
+            <div class="vine-long vine-1"></div>
+            <div class="vine-long vine-2"></div>
+            <div class="vine-long vine-3"></div>
+            <div class="vine-long vine-4"></div>
+
+            <div class="envelope-remnant"></div>
+            <div class="folded-corner"></div>
+
+            <!-- KONTEN DINAMIS DARI STORY.JS -->
+            <div id="dynamic-story-content"></div>
+
+        </div>
+    </section>
+
+    <!-- Lightbox Zoom -->
+    <div id="lightbox-overlay" class="hidden">
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Zoomed Photo">
+    </div>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Shadows+Into+Light&family=Special+Elite&display=swap');
+    </style>
+
+    <!-- Urutan Script Engine -->
+    <script src="js/config.js"></script> 
+    <script src="js/story.js"></script>
+    <script src="js/story-engine.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/music-config.js"></script>
+    <script src="js/music.js"></script>
+    <script src="js/cinematic.js"></script>
+    <script src="js/opening.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/media.js"></script>
+    <script src="js/capsule-config.js"></script>
+    <script src="js/capsule.js"></script>
+</body>
+</html>

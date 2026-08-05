@@ -22,9 +22,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Dependencies & Sync Capacitor
+      - name: Install Dependencies & Capacitor
         run: |
           npm install
+          npm install @capacitor/core @capacitor/cli @capacitor/android
           npx cap sync android
 
       - name: Build Debug APK

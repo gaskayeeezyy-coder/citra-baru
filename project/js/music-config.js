@@ -2,14 +2,14 @@
 const MUSIC_CONFIG = {
     // Masukkan 4 lagu di sini
     playlist: [
-        'assets/music/Semua Aku Dirayakan - Nadin Amizah.mp3',
-        'assets/music/penjaga hati - Nadhif Basalamah.mp3',
-        'assets/music/Masa ini Nanti dan Masa Indah Lainnya - Nuca.mp3',
-        'assets/music/Kita usahakan rumah itu - Sal Priadi.mp3',
-        'assets/music/Sorai - Nadin Amizah.mp3',
-        'assets/music/Beranjak Dewasa - Nadin Amizah.mp3',   // Ganti dengan file asli lu
-        'assets/music/Di Akhir Perang - Nadin Amizah.mp3',  // Ganti dengan file asli lu
-        'assets/music/Ada titik-titik di ujung doa - Sal Priadi.mp3'  // Ganti dengan file asli lu
+        'assets/music/Dirayakan - Nadin.mp3',
+        'assets/music/penjaga - Nadhif.mp3',
+        'assets/music/Masa - Nuca.mp3',
+        'assets/music/Rumah - Sal.mp3',
+        'assets/music/Sorai - Nadin.mp3',
+        'assets/music/Dewasa - Nadin.mp3',   // Ganti dengan file asli lu
+        'assets/music/Perang - Nadin.mp3',  // Ganti dengan file asli lu
+        'assets/music/doa - Sal Priadi.mp3'  // Ganti dengan file asli lu
     ],
     defaultVolume: 1,         // Volume default
     fadeInDuration: 2500,     // Durasi fade-in musik
